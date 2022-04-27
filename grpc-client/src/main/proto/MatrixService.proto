@@ -1,0 +1,22 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package com.example.grpc.server.grpcserver;
+message Matrix{
+        message Row{
+                repeated int32 num=1;
+        }
+        repeated Row rows=1;
+}
+message MRequest{
+        Matrix a=1;
+        Matrix b=2;
+}
+
+message MReply{
+        Matrix c=1;
+}
+
+service MatrixService{
+        rpc Add(MRequest) returns (MReply){}
+        rpc Multiply(MRequest) returns (MReply){}
+}
